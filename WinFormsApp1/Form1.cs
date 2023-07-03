@@ -16,6 +16,7 @@ namespace YimLauncher
     public partial class Form1 : Form
     {
         private bool isdllok = false;
+        private int logerr = 0;
         static string GenerateRandomNumber()
         {
             Random random = new Random();
@@ -28,6 +29,10 @@ namespace YimLauncher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label10.Text = "";
+            label11.Text = "";
+
+
             timer1.Enabled = false;
             button2.Enabled = false;
             button2.Text = "无需更新文件";
@@ -502,6 +507,54 @@ namespace YimLauncher
             {
 
             }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DeleteDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/cout.log";
+            string searchText1 = "EXCEPTION_ACCESS_VIOLATION";
+            string searchText2 = "未找到 'PD";
+
+
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                foreach (string line in lines)
+                {
+                    if (line.Contains(searchText1))
+                    {
+                        label10.Text = "发现复杂错误ExceptionAccessViolation";
+                        logerr = logerr + 1;
+
+                    }
+                    if (line.Contains(searchText2))
+                    {
+                        label11.Text = "未找到PD,请重新安装GTA5启动器";
+                        logerr = logerr + 1;
+
+                    }
+
+                }
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
 
         }
     }

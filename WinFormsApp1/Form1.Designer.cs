@@ -38,6 +38,9 @@
             timer1 = new System.Windows.Forms.Timer(components);
             label5 = new Label();
             groupBox1 = new GroupBox();
+            label11 = new Label();
+            label10 = new Label();
+            button8 = new Button();
             groupBox2 = new GroupBox();
             label6 = new Label();
             groupBox3 = new GroupBox();
@@ -47,14 +50,21 @@
             label9 = new Label();
             label8 = new Label();
             groupBox5 = new GroupBox();
+            button7 = new Button();
+            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             timer2 = new System.Windows.Forms.Timer(components);
-            button6 = new Button();
+            groupBox6 = new GroupBox();
+            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
+            groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -133,12 +143,43 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(button8);
             groupBox1.Location = new Point(12, 262);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(357, 281);
+            groupBox1.Size = new Size(357, 327);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Yim日志分析";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(13, 91);
+            label11.Name = "label11";
+            label11.Size = new Size(62, 20);
+            label11.TabIndex = 14;
+            label11.Text = "label11";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(13, 59);
+            label10.Name = "label10";
+            label10.Size = new Size(62, 20);
+            label10.TabIndex = 13;
+            label10.Text = "label10";
+            // 
+            // button8
+            // 
+            button8.Location = new Point(6, 26);
+            button8.Name = "button8";
+            button8.Size = new Size(94, 29);
+            button8.TabIndex = 12;
+            button8.Text = "开始检查";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // groupBox2
             // 
@@ -199,6 +240,7 @@
             // 
             // button3
             // 
+            button3.ForeColor = Color.Red;
             button3.Location = new Point(6, 96);
             button3.Name = "button3";
             button3.Size = new Size(146, 31);
@@ -228,15 +270,36 @@
             // 
             // groupBox5
             // 
+            groupBox5.Controls.Add(button7);
             groupBox5.Controls.Add(button6);
             groupBox5.Controls.Add(button5);
             groupBox5.Controls.Add(button4);
-            groupBox5.Location = new Point(404, 275);
+            groupBox5.Location = new Point(404, 262);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(250, 125);
+            groupBox5.Size = new Size(351, 183);
             groupBox5.TabIndex = 11;
             groupBox5.TabStop = false;
             groupBox5.Text = "groupBox5";
+            // 
+            // button7
+            // 
+            button7.Location = new Point(6, 87);
+            button7.Name = "button7";
+            button7.Size = new Size(194, 29);
+            button7.TabIndex = 3;
+            button7.Text = "清空Yim脚本";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(6, 55);
+            button6.Name = "button6";
+            button6.Size = new Size(194, 29);
+            button6.TabIndex = 2;
+            button6.Text = "清空Yim语言文件";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -250,11 +313,12 @@
             // 
             // button4
             // 
-            button4.Location = new Point(6, 90);
+            button4.ForeColor = Color.Red;
+            button4.Location = new Point(6, 138);
             button4.Name = "button4";
             button4.Size = new Size(194, 29);
             button4.TabIndex = 0;
-            button4.Text = "清空Yim配置目录";
+            button4.Text = "清空整个配置目录";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -264,21 +328,52 @@
             timer2.Interval = 500;
             timer2.Tick += timer2_Tick;
             // 
-            // button6
+            // groupBox6
             // 
-            button6.Location = new Point(6, 55);
-            button6.Name = "button6";
-            button6.Size = new Size(194, 29);
-            button6.TabIndex = 2;
-            button6.Text = "清空Yim语言文件";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            groupBox6.Controls.Add(button11);
+            groupBox6.Controls.Add(button10);
+            groupBox6.Controls.Add(button9);
+            groupBox6.Location = new Point(407, 461);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(348, 132);
+            groupBox6.TabIndex = 12;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "groupBox6";
+            // 
+            // button9
+            // 
+            button9.Location = new Point(8, 26);
+            button9.Name = "button9";
+            button9.Size = new Size(155, 27);
+            button9.TabIndex = 0;
+            button9.Text = "导入Alice lua";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(8, 59);
+            button10.Name = "button10";
+            button10.Size = new Size(155, 27);
+            button10.TabIndex = 1;
+            button10.Text = "导入SCH lua";
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(169, 26);
+            button11.Name = "button11";
+            button11.Size = new Size(155, 27);
+            button11.TabIndex = 2;
+            button11.Text = "导入Yim-Heist lua";
+            button11.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(829, 601);
+            Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
@@ -287,6 +382,8 @@
             Name = "Form1";
             Text = "Yimmenu兼容性检查程序 ";
             Load += Form1_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -294,6 +391,7 @@
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -321,5 +419,13 @@
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button button7;
+        private Button button8;
+        private Label label10;
+        private Label label11;
+        private GroupBox groupBox6;
+        private Button button10;
+        private Button button9;
+        private Button button11;
     }
 }
