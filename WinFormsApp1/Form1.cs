@@ -15,7 +15,7 @@ namespace YimLauncher
 
     public partial class Form1 : Form
     {
-        private bool isdllok = false;
+        private int isdllok = 0;
         private int logerr = 0;
         static string GenerateRandomNumber()
         {
@@ -212,7 +212,7 @@ namespace YimLauncher
             {
                 try
                 {
-                    if (isdllok = false)
+                    if (isdllok != 1)
                     {
                         client.DownloadFile(YimUrl, InjectTMPdll);
 
@@ -277,13 +277,14 @@ namespace YimLauncher
                 {
                     label1.ForeColor = Color.Green;
                     label1.Text = "Yimmenu(诊断程序专用) 正常,Hash与服务器一致";
-                    isdllok = true;
+                    isdllok = 1;
                 }
                 else
                 {
                     label1.Text = "Yimmenu(诊断程序专用) 过时";
                     label1.ForeColor = Color.Coral;
                     errct = errct + 1;
+                    isdllok = 0;
                 }
             }
             else
@@ -291,6 +292,7 @@ namespace YimLauncher
                 label1.Text = "Yimmenu(诊断程序专用) 缺失";
                 label1.ForeColor = Color.Red;
                 errct = errct + 1;
+                isdllok = 0;
 
             }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/translations/index.json"))
