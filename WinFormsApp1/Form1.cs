@@ -8,10 +8,11 @@ using System.Net;
 using System.Security.Cryptography;
 using Microsoft.VisualBasic.Devices;
 using System.Security.Policy;
+using Microsoft.Win32;
 
 namespace YimLauncher
 {
-    
+
     public partial class Form1 : Form
     {
         private bool isdllok = false;
@@ -71,6 +72,61 @@ namespace YimLauncher
                 }
             }
 
+            string keyPath = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Rockstar Games Social Club";
+            string valueName = "UninstallString";
+            string installLocation = "";
+
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyPath))
+            {
+                if (key != null)
+                {
+                    object value = key.GetValue(valueName);
+                    if (value != null)
+                    {
+                        installLocation = value.ToString();
+
+                    }
+                }
+            }
+            string rawpath = installLocation;
+            string substringToRemove = @"\uninstallRGSCRedistributable.exe";
+
+            string newPath = rawpath.Replace(substringToRemove, "");
+            FileVersionInfo scdllinfo = FileVersionInfo.GetVersionInfo(newPath + "/socialclub.dll");
+            string version = scdllinfo.ProductVersion;
+            label8.Text = "启动器版本:" + version;
+
+            try
+            {
+
+                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/Info.txt";
+                string[] lines = File.ReadAllLines(filePath);
+                string SCVerValue = null;
+                string SCVerLine = Array.Find(lines, line => line.StartsWith("SCVer"));
+
+                if (SCVerLine != null)
+                {
+                    string[] parts = SCVerLine.Split('=');
+                    SCVerValue = parts[1].Trim();
+                }
+
+                if (version != SCVerValue)
+                {
+                    label9.Text = "评价:过时\n卸载当前启动器，然后重新启动游戏";
+                    label9.ForeColor = Color.Red;
+                }
+                else
+                {
+                    label9.Text = "评价:正常,无需进行操作";
+                    label9.ForeColor = Color.Green;
+
+                }
+
+            }
+            catch
+            {
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -173,8 +229,11 @@ namespace YimLauncher
         private void timer1_Tick(object sender, EventArgs e)
         {
             int errct = 0;
-            Process GTA5Process1 = null;
+
+
             string yimPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
+
+            Process GTA5Process1 = null;
 
             foreach (var item in Process.GetProcessesByName("GTA5"))
             {
@@ -195,6 +254,7 @@ namespace YimLauncher
             {
 
             }
+
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll"))
             {
                 string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/Info.txt";
@@ -329,7 +389,121 @@ namespace YimLauncher
             }
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Process stProcess1 = null;
 
+            foreach (var item1 in Process.GetProcessesByName("Stand.Launchpad"))
+            {
+                if (item1.MainWindowHandle == IntPtr.Zero)
+                    continue;
+
+                if (item1.MainModule.FileVersionInfo.FileDescription.Contains("Stand"))
+                {
+                    stProcess1 = item1;
+                    break;
+                }
+
+            }
+            if (stProcess1 != null)
+            {
+                label7.Text = "Stand注入器正在运行\n如需双开,请确保先注入Yim后注入stand！";
+                label7.ForeColor = Color.Red;
+            }
+            else
+            {
+                label7.Text = "暂未发现异常";
+
+            }
+
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string keyPath = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Rockstar Games Social Club";
+            string valueName = "UninstallString";
+            string uninstallLocation = "";
+
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyPath))
+            {
+                if (key != null)
+                {
+                    object value = key.GetValue(valueName);
+                    if (value != null)
+                    {
+                        uninstallLocation = value.ToString();
+
+                    }
+                }
+            }
+
+            Process.Start(uninstallLocation);
+        }
+        public static void DeleteDirectory(string directoryPath)
+        {
+            // 删除目录中的文件
+            string[] files = Directory.GetFiles(directoryPath);
+            foreach (string file in files)
+            {
+                File.Delete(file);
+            }
+
+            // 递归删除子目录
+            string[] subDirectories = Directory.GetDirectories(directoryPath);
+            foreach (string subDirectory in subDirectories)
+            {
+                DeleteDirectory(subDirectory);
+            }
+
+            // 删除空目录
+            Directory.Delete(directoryPath);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DeleteDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu");
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DeleteDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/cache");
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DeleteDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/translations");
+
+            }
+            catch
+            {
+
+            }
+
+        }
     }
 }
 
