@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using Microsoft.VisualBasic.Devices;
 using System.Security.Policy;
 using Microsoft.Win32;
+using System.Net.NetworkInformation;
 
 namespace YimLauncher
 {
@@ -16,7 +17,19 @@ namespace YimLauncher
     public partial class Form1 : Form
     {
         private int isdllok = 0;
+        private int isnonegfw = 0;
         private int logerr = 0;
+
+        private string AliceluaUrl = "https://cus.host3650.live/luaAlice.lua";
+        private string AlicelibUrl = "https://cus.host3650.live/Alicelib1.lua";
+        private string wangzixuanUrl = "https://cus.host3650.live/Heist(1).lua";
+        private string schluaUrl = "https://cus.host3650.live/sch(1).lua";
+        private string InfoUrl = "https://cus.host3650.live/Info.txt";
+        private string YimUrl = "https://cus.host3650.live/YimMenu.dll";
+        private string IndexUrl = "https://cus.host3650.live/index.json";
+        private string zhcnUrl = "https://cus.host3650.live/zh_CN.json";
+
+
         static string GenerateRandomNumber()
         {
             Random random = new Random();
@@ -37,6 +50,7 @@ namespace YimLauncher
             button2.Enabled = false;
             button2.Text = "无需更新文件";
             label5.Text = "";
+
             string InjectTMP1 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimLauncher", "tmp");
             try
             {
@@ -51,7 +65,9 @@ namespace YimLauncher
 
             }
 
-            string InfoUrl = "https://cus.host3650.live/Info.txt";
+
+
+
             string InfoTxt = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/Info.txt";
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher"))
@@ -74,6 +90,8 @@ namespace YimLauncher
                     MessageBox.Show("配置文件无法下载,部分功能失效!");
                     timer1.Enabled = false;
                     label4.Text = "网络错误，无法运行文件校验";
+                    label12.Text = "下载源:不可用(自动选择)";
+
                 }
             }
 
@@ -186,9 +204,6 @@ namespace YimLauncher
 
             label5.Text = "正在下载,请耐心等待...";
 
-            string YimUrl = "https://cus.host3650.live/YimMenu.dll";
-            string IndexUrl = "https://cus.host3650.live/index.json";
-            string zhcnUrl = "https://cus.host3650.live/zh_CN.json";
 
             string InjectTMPdll = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
             string IndexFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/translations/index.json";
@@ -238,27 +253,7 @@ namespace YimLauncher
 
             string yimPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
 
-            Process GTA5Process1 = null;
 
-            foreach (var item in Process.GetProcessesByName("GTA5"))
-            {
-                if (item.MainWindowHandle == IntPtr.Zero)
-                    continue;
-
-                if (item.MainModule.FileVersionInfo.LegalCopyright.Contains("Rockstar Games Inc."))
-                {
-                    GTA5Process1 = item;
-                    break;
-                }
-            }
-            if (GTA5Process1 != null)
-            {
-                label6.Text = "GTA5正在运行";
-            }
-            else
-            {
-
-            }
 
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll"))
             {
@@ -399,30 +394,60 @@ namespace YimLauncher
         private void timer2_Tick(object sender, EventArgs e)
         {
             Process stProcess1 = null;
-
-            foreach (var item1 in Process.GetProcessesByName("Stand.Launchpad"))
+            try
             {
-                if (item1.MainWindowHandle == IntPtr.Zero)
-                    continue;
-
-                if (item1.MainModule.FileVersionInfo.FileDescription.Contains("Stand"))
+                foreach (var item1 in Process.GetProcesses())
                 {
-                    stProcess1 = item1;
-                    break;
+                    if (item1.MainWindowHandle == IntPtr.Zero)
+                        continue;
+
+                    if (item1.MainModule.FileVersionInfo.FileDescription.Contains("Stand"))
+                    {
+                        label7.Text = "Stand注入器正在运行\n如需双开,请确保先注入Yim后注入stand！";
+                        label7.ForeColor = Color.Red;
+
+                        break;
+                    }
+                    else
+                    {
+                        label7.Text = "暂未发现异常";
+                        label7.ForeColor = Color.Black;
+
+
+                    }
+
                 }
 
             }
-            if (stProcess1 != null)
+            catch
             {
-                label7.Text = "Stand注入器正在运行\n如需双开,请确保先注入Yim后注入stand！";
-                label7.ForeColor = Color.Red;
+
+            }
+            Process GTA5Process1 = null;
+
+            foreach (var item in Process.GetProcessesByName("GTA5"))
+            {
+                if (item.MainWindowHandle == IntPtr.Zero)
+                    continue;
+
+                if (item.MainModule.FileVersionInfo.LegalCopyright.Contains("Rockstar Games Inc."))
+                {
+                    GTA5Process1 = item;
+                    break;
+                }
+            }
+            if (GTA5Process1 != null)
+            {
+                label6.Text = "GTA5正在运行";
+                button12.Enabled = true;
+
             }
             else
             {
-                label7.Text = "暂未发现异常";
+                button12.Enabled = false;
+                label6.Text = "GTA5已停止";
 
             }
-
 
         }
 
@@ -531,33 +556,198 @@ namespace YimLauncher
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/cout.log";
             string searchText1 = "EXCEPTION_ACCESS_VIOLATION";
             string searchText2 = "未找到 'PD";
-
-
-            if (File.Exists(filePath))
+            try
             {
-                string[] lines = File.ReadAllLines(filePath);
-                foreach (string line in lines)
+
+
+
+                if (File.Exists(filePath))
                 {
-                    if (line.Contains(searchText1))
+                    string[] lines = File.ReadAllLines(filePath);
+                    foreach (string line in lines)
                     {
-                        label10.Text = "发现复杂错误ExceptionAccessViolation";
-                        logerr = logerr + 1;
+                        if (line.Contains(searchText1))
+                        {
+                            label10.Text = "发现复杂错误ExceptionAccessViolation";
+                            logerr = logerr + 1;
+
+                        }
+                        if (line.Contains(searchText2))
+                        {
+                            label11.Text = "未找到PD,请重新安装GTA5启动器";
+                            logerr = logerr + 1;
+
+                        }
 
                     }
-                    if (line.Contains(searchText2))
-                    {
-                        label11.Text = "未找到PD,请重新安装GTA5启动器";
-                        logerr = logerr + 1;
-
-                    }
-
                 }
+            }
+            catch
+            {
+                MessageBox.Show("无法读取日志,请确保Yimmenu未在运行");
             }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
 
+            string AliceluaDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/Alice.lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib[Alice].lua";
+
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
+            {
+                if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu"))
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu");
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+
+            }
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib");
+
+
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile(AliceluaUrl, AliceluaDes);
+                    client.DownloadFile(AlicelibUrl, AlicelibDes);
+
+                    MessageBox.Show("成功");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("下载失败");
+                }
+            }
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("GTA5");
+
+            // 遍历进程实例并关闭它们
+            foreach (Process process in processes)
+            {
+                process.Kill();
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            string schluaDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/sch.lua";
+
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
+            {
+                if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu"))
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu");
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+
+            }
+
+
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile(schluaUrl, schluaDes);
+
+                    MessageBox.Show("成功");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("下载失败");
+                }
+            }
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+            string wangzixuanDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/YimMenu-HeistLua .lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib[Alice].lua";
+
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
+            {
+                if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu"))
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu");
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts");
+
+                }
+
+            }
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib");
+
+
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile(wangzixuanUrl, wangzixuanDes);
+                    client.DownloadFile(AlicelibUrl, AlicelibDes);
+
+                    MessageBox.Show("成功");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("下载失败");
+                }
+            }
+
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            string testgfwhost = "google.com";
+            isnonegfw = 0;
+
+            Ping ping = new Ping();
+            PingReply reply = ping.Send(testgfwhost);
+
+            if (reply.Status == IPStatus.Success)
+            {
+                isnonegfw = 1;
+                AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/luaAlice.lua";
+                AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alicelib1.lua";
+                wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.1.lua";
+                schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.1.lua";
+                InfoUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Info.txt";
+                YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
+                IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
+                zhcnUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
+                label12.Text = "下载源:Github(自动选择)";
+            }
+            else
+            {
+
+            }
+            timer3.Enabled = false;
         }
     }
 }

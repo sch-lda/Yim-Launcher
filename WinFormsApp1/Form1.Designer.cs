@@ -42,6 +42,7 @@
             label10 = new Label();
             button8 = new Button();
             groupBox2 = new GroupBox();
+            button12 = new Button();
             label6 = new Label();
             groupBox3 = new GroupBox();
             label7 = new Label();
@@ -56,9 +57,11 @@
             button4 = new Button();
             timer2 = new System.Windows.Forms.Timer(components);
             groupBox6 = new GroupBox();
-            button9 = new Button();
-            button10 = new Button();
             button11 = new Button();
+            button10 = new Button();
+            button9 = new Button();
+            timer3 = new System.Windows.Forms.Timer(components);
+            label12 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -151,7 +154,7 @@
             groupBox1.Size = new Size(357, 327);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Yim日志分析";
+            groupBox1.Text = "Yim日志分析-开发中";
             // 
             // label11
             // 
@@ -183,6 +186,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(button12);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label1);
@@ -197,6 +201,16 @@
             groupBox2.TabIndex = 8;
             groupBox2.TabStop = false;
             groupBox2.Text = "文件检查";
+            // 
+            // button12
+            // 
+            button12.Location = new Point(224, 207);
+            button12.Name = "button12";
+            button12.Size = new Size(127, 29);
+            button12.TabIndex = 8;
+            button12.Text = "强制退出GTA";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // label6
             // 
@@ -279,7 +293,7 @@
             groupBox5.Size = new Size(351, 183);
             groupBox5.TabIndex = 11;
             groupBox5.TabStop = false;
-            groupBox5.Text = "groupBox5";
+            groupBox5.Text = "配置清除";
             // 
             // button7
             // 
@@ -338,7 +352,27 @@
             groupBox6.Size = new Size(348, 132);
             groupBox6.TabIndex = 12;
             groupBox6.TabStop = false;
-            groupBox6.Text = "groupBox6";
+            groupBox6.Text = "lua脚本管理";
+            // 
+            // button11
+            // 
+            button11.Location = new Point(169, 26);
+            button11.Name = "button11";
+            button11.Size = new Size(155, 27);
+            button11.TabIndex = 2;
+            button11.Text = "导入Yim-Heist lua";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(8, 59);
+            button10.Name = "button10";
+            button10.Size = new Size(155, 27);
+            button10.TabIndex = 1;
+            button10.Text = "导入SCH lua";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button9
             // 
@@ -350,29 +384,27 @@
             button9.UseVisualStyleBackColor = true;
             button9.Click += button9_Click;
             // 
-            // button10
+            // timer3
             // 
-            button10.Location = new Point(8, 59);
-            button10.Name = "button10";
-            button10.Size = new Size(155, 27);
-            button10.TabIndex = 1;
-            button10.Text = "导入SCH lua";
-            button10.UseVisualStyleBackColor = true;
+            timer3.Enabled = true;
+            timer3.Interval = 2000;
+            timer3.Tick += timer3_Tick;
             // 
-            // button11
+            // label12
             // 
-            button11.Location = new Point(169, 26);
-            button11.Name = "button11";
-            button11.Size = new Size(155, 27);
-            button11.TabIndex = 2;
-            button11.Text = "导入Yim-Heist lua";
-            button11.UseVisualStyleBackColor = true;
+            label12.AutoSize = true;
+            label12.Location = new Point(12, 592);
+            label12.Name = "label12";
+            label12.Size = new Size(133, 20);
+            label12.TabIndex = 13;
+            label12.Text = "下载源:Cloudflare";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(829, 601);
+            ClientSize = new Size(889, 626);
+            Controls.Add(label12);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
@@ -380,7 +412,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Form1";
-            Text = "Yimmenu兼容性检查程序 ";
+            Text = "Yimmenu兼容性检查程序-网络版 ";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -393,6 +425,7 @@
             groupBox5.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -427,5 +460,8 @@
         private Button button10;
         private Button button9;
         private Button button11;
+        private Button button12;
+        private System.Windows.Forms.Timer timer3;
+        private Label label12;
     }
 }
