@@ -9,10 +9,12 @@ using System.Security.Cryptography;
 using Microsoft.VisualBasic.Devices;
 using System.Security.Policy;
 
-namespace WinFormsApp1
+namespace YimLauncher
 {
+    
     public partial class Form1 : Form
     {
+        private bool isdllok = false;
         static string GenerateRandomNumber()
         {
             Random random = new Random();
@@ -25,6 +27,9 @@ namespace WinFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
+            button2.Enabled = false;
+            button2.Text = "无需更新文件";
             label5.Text = "";
             string InjectTMP1 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimLauncher", "tmp");
             try
@@ -55,12 +60,14 @@ namespace WinFormsApp1
                 try
                 {
                     client.DownloadFile(InfoUrl, InfoTxt);
+                    timer1.Enabled = true;
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("配置文件无法下载,部分功能失效!");
                     timer1.Enabled = false;
-                    label4.Text = "网络错误，无法运行检查";
+                    label4.Text = "网络错误，无法运行文件校验";
                 }
             }
 
@@ -95,7 +102,15 @@ namespace WinFormsApp1
                 // 复制文件
                 File.Copy(sourcePath, InjectTMPdll);
 
-                DllInjector.InjectDll(GTA5Process.Id, InjectTMPdll);
+                if (GTA5Process != null)
+                {
+                    DllInjector.InjectDll(GTA5Process.Id, InjectTMPdll);
+
+                }
+                else
+                {
+                    MessageBox.Show("GTA5未运行!");
+                }
 
             }
             catch
@@ -136,15 +151,20 @@ namespace WinFormsApp1
             {
                 try
                 {
-                    client.DownloadFile(YimUrl, InjectTMPdll);
+                    if (isdllok = false)
+                    {
+                        client.DownloadFile(YimUrl, InjectTMPdll);
+
+                    }
                     client.DownloadFile(IndexUrl, IndexFolder);
                     client.DownloadFile(zhcnUrl, zhcnFolder);
 
-
-                    MessageBox.Show("全部下载完成");
+                    label5.Text = "下载完成";
                 }
                 catch (Exception ex)
                 {
+                    label5.Text = "下载失败";
+
                 }
             }
 
@@ -153,7 +173,28 @@ namespace WinFormsApp1
         private void timer1_Tick(object sender, EventArgs e)
         {
             int errct = 0;
+            Process GTA5Process1 = null;
+            string yimPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
 
+            foreach (var item in Process.GetProcessesByName("GTA5"))
+            {
+                if (item.MainWindowHandle == IntPtr.Zero)
+                    continue;
+
+                if (item.MainModule.FileVersionInfo.LegalCopyright.Contains("Rockstar Games Inc."))
+                {
+                    GTA5Process1 = item;
+                    break;
+                }
+            }
+            if (GTA5Process1 != null)
+            {
+                label6.Text = "GTA5正在运行";
+            }
+            else
+            {
+
+            }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll"))
             {
                 string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/Info.txt";
@@ -170,19 +211,20 @@ namespace WinFormsApp1
                 if (realdllhash == dllHashValue)
                 {
                     label1.ForeColor = Color.Green;
-                    label1.Text = "Yimmenu Dll 正常,Hash与服务器一致";
+                    label1.Text = "Yimmenu(诊断程序专用) 正常,Hash与服务器一致";
+                    isdllok = true;
                 }
                 else
                 {
-                    label1.Text = "Yimmenu Dll 过时";
+                    label1.Text = "Yimmenu(诊断程序专用) 过时";
                     label1.ForeColor = Color.Coral;
                     errct = errct + 1;
                 }
             }
             else
             {
-                label1.Text = "Yimmenu Dll缺失";
-                label1.ForeColor = Color.Coral;
+                label1.Text = "Yimmenu(诊断程序专用) 缺失";
+                label1.ForeColor = Color.Red;
                 errct = errct + 1;
 
             }
@@ -213,7 +255,7 @@ namespace WinFormsApp1
                 }
                 else
                 {
-                    label2.Text = "语言索引 过时";
+                    label2.Text = "语言索引 可能过时,若中文不正常请更新";
                     label2.ForeColor = Color.Coral;
                     errct = errct + 1;
 
@@ -223,7 +265,7 @@ namespace WinFormsApp1
             else
             {
                 label2.Text = "语言索引 缺失";
-                label2.ForeColor = Color.Coral;
+                label2.ForeColor = Color.Red;
                 errct = errct + 1;
 
             }
@@ -251,7 +293,7 @@ namespace WinFormsApp1
                 else
                 {
                     label3.Text = "中文语言文件 过时";
-                    label3.ForeColor = Color.Coral;
+                    label3.ForeColor = Color.Red;
                     errct = errct + 1;
 
                 }
@@ -266,11 +308,13 @@ namespace WinFormsApp1
             if (errct == 0)
             {
                 label4.Text = "关键文件状态指示:(通过)";
+                button2.Enabled = false;
             }
             else
             {
                 label4.Text = "关键文件状态指示:(未通过)";
-
+                button2.Enabled = true;
+                button2.Text = "更新异常文件";
             }
         }
         static string CalculateFileHash(string filePath)

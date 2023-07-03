@@ -1,4 +1,4 @@
-namespace WinFormsApp1
+namespace YimLauncher
 {
     internal static class Program
     {
