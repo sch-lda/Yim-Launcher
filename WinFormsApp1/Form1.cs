@@ -85,14 +85,26 @@ namespace YimLauncher
                 {
                     client.DownloadFile(InfoUrl, InfoTxt);
                     timer1.Enabled = true;
-
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("配置文件无法下载,部分功能失效!");
-                    timer1.Enabled = false;
-                    label4.Text = "网络错误，无法运行文件校验";
-                    label12.Text = "下载源:不可用(无网络)";
+                    MessageBox.Show("配置文件下载失败,将尝试备用方案");
+
+                    try
+                    {
+                        string fallbackUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Info.txt";
+                        client.DownloadFile(fallbackUrl, InfoTxt);
+                        timer1.Enabled = true;
+                        MessageBox.Show("配置文件下载成功");
+
+                    }
+                    catch {
+                        MessageBox.Show("配置文件无法下载,部分功能失效!");
+                        timer1.Enabled = false;
+                        label4.Text = "网络错误，无法运行文件校验";
+                        label12.Text = "下载源:不可用(无网络)";
+
+                    }
 
                 }
             }
