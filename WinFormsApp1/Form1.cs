@@ -92,13 +92,14 @@ namespace YimLauncher
 
                     try
                     {
-                        string fallbackUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Info.txt";
+                        string fallbackUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
                         client.DownloadFile(fallbackUrl, InfoTxt);
                         timer1.Enabled = true;
                         MessageBox.Show("配置文件下载成功");
 
                     }
-                    catch {
+                    catch
+                    {
                         MessageBox.Show("配置文件无法下载,部分功能失效!");
                         timer1.Enabled = false;
                         label4.Text = "网络错误，无法运行文件校验";
@@ -767,14 +768,14 @@ namespace YimLauncher
 
         private void button13_Click(object sender, EventArgs e)
         {
-            AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Alice.lua";
-            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/lib.Alice.lua";
-            wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Heist.lua";
-            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/sch.lua";
-            InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Info.txt";
-            YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/YimMenu.dll";
-            IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/index.json";
-            zhcnUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/zh_CN.json";
+            AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
+            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
+            wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
+            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/sch.lua";
+            InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
+            YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/YimMenu.dll";
+            IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/index.json";
+            zhcnUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/zh_CN.json";
             label12.Text = "下载源:jsDelivr";
 
         }

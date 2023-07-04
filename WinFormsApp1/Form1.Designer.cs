@@ -425,7 +425,7 @@
             Controls.Add(groupBox1);
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Yimmenu兼容性检查程序v1.20-网络版 ";
+            Text = "Yimmenu兼容性检查程序v1.2.1-网络版 ";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
