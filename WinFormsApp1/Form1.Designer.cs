@@ -397,7 +397,7 @@
             label12.Name = "label12";
             label12.Size = new Size(133, 20);
             label12.TabIndex = 13;
-            label12.Text = "下载源:Cloudflare";
+            label12.Text = "下载源";
             // 
             // Form1
             // 

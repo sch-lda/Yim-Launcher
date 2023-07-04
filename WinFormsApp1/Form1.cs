@@ -20,14 +20,15 @@ namespace YimLauncher
         private int isnonegfw = 0;
         private int logerr = 0;
 
-        private string AliceluaUrl = "https://cus.host3650.live/luaAlice.lua";
-        private string AlicelibUrl = "https://cus.host3650.live/Alicelib1.lua";
-        private string wangzixuanUrl = "https://cus.host3650.live/Heist(1).lua";
-        private string schluaUrl = "https://cus.host3650.live/sch(1).lua";
-        private string InfoUrl = "https://cus.host3650.live/Info.txt";
-        private string YimUrl = "https://cus.host3650.live/YimMenu.dll";
-        private string IndexUrl = "https://cus.host3650.live/index.json";
-        private string zhcnUrl = "https://cus.host3650.live/zh_CN.json";
+        private string AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
+        private string AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
+        private string wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
+        private string schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
+        private string InfoUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Info.txt";
+        private string YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
+        private string IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
+        private string zhcnUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
+
 
 
         static string GenerateRandomNumber()
@@ -44,6 +45,7 @@ namespace YimLauncher
         {
             label10.Text = "";
             label11.Text = "";
+            label12.Text = "下载源:中国大陆ghproxy(自动选择)";
 
 
             timer1.Enabled = false;
@@ -317,7 +319,7 @@ namespace YimLauncher
                 }
                 else
                 {
-                    label2.Text = "语言索引 可能过时,若中文不正常请更新";
+                    label2.Text = "语言索引 改变,若中文不正常请更新";
                     label2.ForeColor = Color.Coral;
                     errct = errct + 1;
 
@@ -733,10 +735,10 @@ namespace YimLauncher
             if (reply.Status == IPStatus.Success)
             {
                 isnonegfw = 1;
-                AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/luaAlice.lua";
-                AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alicelib1.lua";
-                wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.1.lua";
-                schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.1.lua";
+                AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
+                AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
+                wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
+                schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
                 InfoUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Info.txt";
                 YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
                 IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
