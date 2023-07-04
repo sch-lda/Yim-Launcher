@@ -24,7 +24,7 @@ namespace YimLauncher
         private string AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
         private string wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
         private string schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
-        private string InfoUrl = "https://cus.host3650.live/Info.txt";
+        private string InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
         private string YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
         private string IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
         private string zhcnUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
