@@ -10,6 +10,7 @@ using Microsoft.VisualBasic.Devices;
 using System.Security.Policy;
 using Microsoft.Win32;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 
 namespace YimLauncher
 {
@@ -29,7 +30,15 @@ namespace YimLauncher
         private string IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
         private string zhcnUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
 
+        static async Task DownloadFileAsync(string url, string fileName)
+        {
+            using (var client = new WebClient())
+            {
+                // 异步下载文件
+                await client.DownloadFileTaskAsync(url, fileName);
 
+            }
+        }
 
         static string GenerateRandomNumber()
         {
@@ -88,7 +97,6 @@ namespace YimLauncher
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("配置文件下载失败,将尝试备用方案");
 
                     try
                     {
@@ -465,6 +473,50 @@ namespace YimLauncher
 
             }
 
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua")){
+                button9.BackColor = Color.Green;
+                button9.ForeColor = Color.White;
+                button9.Text = "更新Alice lua";
+            }
+            else
+            {
+                button9.BackColor = Color.White;
+                button9.ForeColor = Color.Black;
+                button9.Text = "下载Alice lua";
+
+            }
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/YimMenu-HeistLua .lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua"))
+            {
+                button11.BackColor = Color.Green;
+                button11.ForeColor = Color.White;
+                button11.Text = "更新HeistLua";
+
+            }
+            else
+            {
+                button11.BackColor = Color.White;
+                button11.ForeColor = Color.Black;
+                button11.Text = "下载HeistLua";
+
+            }
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/sch.lua"))
+            {
+                button10.BackColor = Color.Green;
+                button10.ForeColor = Color.White;
+                button10.Text = "更新SCH Lua";
+
+            }
+            else
+            {
+                button10.BackColor = Color.White;
+                button10.ForeColor = Color.Black;
+                button10.Text = "下载SCH Lua";
+
+            }
+
+
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -632,10 +684,10 @@ namespace YimLauncher
             {
                 try
                 {
-                    client.DownloadFile(AliceluaUrl, AliceluaDes);
-                    client.DownloadFile(AlicelibUrl, AlicelibDes);
+                    Task downloadTask1 = Task.Run(() => DownloadFileAsync(AliceluaUrl, AliceluaDes));
+                    Task downloadTask2 = Task.Run(() => DownloadFileAsync(AlicelibUrl, AlicelibDes));
 
-                    MessageBox.Show("成功");
+                    //MessageBox.Show("成功");
 
                 }
                 catch (Exception ex)
@@ -683,9 +735,9 @@ namespace YimLauncher
             {
                 try
                 {
-                    client.DownloadFile(schluaUrl, schluaDes);
+                    Task downloadTask1 = Task.Run(() => DownloadFileAsync(schluaUrl, schluaDes));
 
-                    MessageBox.Show("成功");
+                    // MessageBox.Show("成功");
 
                 }
                 catch (Exception ex)
@@ -724,10 +776,9 @@ namespace YimLauncher
             {
                 try
                 {
-                    client.DownloadFile(wangzixuanUrl, wangzixuanDes);
-                    client.DownloadFile(AlicelibUrl, AlicelibDes);
+                    Task downloadTask1 = Task.Run(() => DownloadFileAsync(wangzixuanUrl, wangzixuanDes));
+                    Task downloadTask2 = Task.Run(() => DownloadFileAsync(AlicelibUrl, AlicelibDes));
 
-                    MessageBox.Show("成功");
 
                 }
                 catch (Exception ex)
@@ -778,6 +829,58 @@ namespace YimLauncher
             zhcnUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/zh_CN.json";
             label12.Text = "下载源:jsDelivr";
 
+        }
+
+
+
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
+            AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+            wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
+            schluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+            InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
+            YimUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
+            IndexUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
+            zhcnUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
+            label12.Text = "下载源:Github";
+            button13.BackColor = Color.Cyan;
+            button14.BackColor = Color.White;
+            button15.BackColor = Color.White;
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
+            AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+            wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
+            schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+            InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
+            YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
+            IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
+            zhcnUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
+            label12.Text = "下载源:ghproxy";
+            button14.BackColor = Color.Cyan;
+            button13.BackColor = Color.White;
+            button15.BackColor = Color.White;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
+            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
+            wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
+            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/sch.lua";
+            InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
+            YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/YimMenu.dll";
+            IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/index.json";
+            zhcnUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/zh_CN.json";
+            label12.Text = "下载源:jsDelivr";
+            button15.BackColor = Color.Cyan;
+            button14.BackColor = Color.White;
+            button13.BackColor = Color.White;
         }
     }
 }

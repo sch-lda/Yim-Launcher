@@ -60,9 +60,13 @@
             button11 = new Button();
             button10 = new Button();
             button9 = new Button();
+            button15 = new Button();
+            button14 = new Button();
             timer3 = new System.Windows.Forms.Timer(components);
             label12 = new Label();
+            label13 = new Label();
             button13 = new Button();
+            label14 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -308,7 +312,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(6, 55);
+            button6.Location = new Point(6, 59);
             button6.Name = "button6";
             button6.Size = new Size(194, 29);
             button6.TabIndex = 2;
@@ -361,7 +365,7 @@
             button11.Name = "button11";
             button11.Size = new Size(155, 27);
             button11.TabIndex = 2;
-            button11.Text = "导入Yim-Heist lua";
+            button11.Text = "下载Yim-Heist lua";
             button11.UseVisualStyleBackColor = true;
             button11.Click += button11_Click;
             // 
@@ -371,7 +375,7 @@
             button10.Name = "button10";
             button10.Size = new Size(155, 27);
             button10.TabIndex = 1;
-            button10.Text = "导入SCH lua";
+            button10.Text = "下载SCH lua";
             button10.UseVisualStyleBackColor = true;
             button10.Click += button10_Click;
             // 
@@ -381,9 +385,31 @@
             button9.Name = "button9";
             button9.Size = new Size(155, 27);
             button9.TabIndex = 0;
-            button9.Text = "导入Alice lua";
+            button9.Text = "下载Alice lua";
             button9.UseVisualStyleBackColor = true;
             button9.Click += button9_Click;
+            // 
+            // button15
+            // 
+            button15.BackColor = Color.White;
+            button15.Location = new Point(545, 595);
+            button15.Name = "button15";
+            button15.Size = new Size(94, 29);
+            button15.TabIndex = 24;
+            button15.Text = "jsdelivr";
+            button15.UseVisualStyleBackColor = false;
+            button15.Click += button15_Click;
+            // 
+            // button14
+            // 
+            button14.BackColor = Color.White;
+            button14.Location = new Point(445, 595);
+            button14.Name = "button14";
+            button14.Size = new Size(94, 29);
+            button14.TabIndex = 23;
+            button14.Text = "ghproxy";
+            button14.UseVisualStyleBackColor = false;
+            button14.Click += button14_Click;
             // 
             // timer3
             // 
@@ -400,22 +426,45 @@
             label12.TabIndex = 13;
             label12.Text = "下载源";
             // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(266, 601);
+            label13.Name = "label13";
+            label13.Size = new Size(73, 20);
+            label13.TabIndex = 18;
+            label13.Text = "手动换源:";
+            // 
             // button13
             // 
-            button13.Location = new Point(236, 592);
+            button13.BackColor = Color.White;
+            button13.Location = new Point(345, 595);
             button13.Name = "button13";
-            button13.Size = new Size(134, 29);
-            button13.TabIndex = 14;
-            button13.Text = "切换为jsdelivr源";
-            button13.UseVisualStyleBackColor = true;
-            button13.Click += button13_Click;
+            button13.Size = new Size(94, 29);
+            button13.TabIndex = 22;
+            button13.Text = "Github";
+            button13.UseVisualStyleBackColor = false;
+            button13.Click += button13_Click_1;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(12, 627);
+            label14.Name = "label14";
+            label14.Size = new Size(805, 20);
+            label14.TabIndex = 25;
+            label14.Text = "除了Github,其他源下载到的文件可能都不是最新的,存在约24h的延迟。但是在中国大陆访问GitHub需要合适的网络环境";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 626);
+            ClientSize = new Size(889, 650);
+            Controls.Add(label14);
+            Controls.Add(button15);
             Controls.Add(button13);
+            Controls.Add(button14);
+            Controls.Add(label13);
             Controls.Add(label12);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
@@ -476,6 +525,10 @@
         private Button button12;
         private System.Windows.Forms.Timer timer3;
         private Label label12;
+        private Label label13;
+        private Button button15;
+        private Button button14;
         private Button button13;
+        private Label label14;
     }
 }
