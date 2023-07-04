@@ -20,14 +20,14 @@ namespace YimLauncher
         private int isnonegfw = 0;
         private int logerr = 0;
 
-        private string AliceluaUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
-        private string AlicelibUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
-        private string wangzixuanUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
-        private string schluaUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
+        private string AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
+        private string AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+        private string wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
+        private string schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
         private string InfoUrl = "https://cus.host3650.live/Info.txt";
-        private string YimUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
-        private string IndexUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
-        private string zhcnUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
+        private string YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
+        private string IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
+        private string zhcnUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
 
 
 
@@ -736,14 +736,14 @@ namespace YimLauncher
             if (reply.Status == IPStatus.Success)
             {
                 isnonegfw = 1;
-                AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
-                AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
-                wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
-                schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
-                InfoUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Info.txt";
-                YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
-                IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
-                zhcnUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
+                AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
+                AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+                wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
+                schluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+                InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
+                YimUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
+                IndexUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
+                zhcnUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
                 label12.Text = "下载源:国际:Github(自动)";
             }
             else
