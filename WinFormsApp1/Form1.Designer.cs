@@ -62,6 +62,7 @@
             button9 = new Button();
             timer3 = new System.Windows.Forms.Timer(components);
             label12 = new Label();
+            button13 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -132,7 +133,7 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 1000;
+            timer1.Interval = 2000;
             timer1.Tick += timer1_Tick;
             // 
             // label5
@@ -393,17 +394,28 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(12, 592);
+            label12.Location = new Point(12, 597);
             label12.Name = "label12";
-            label12.Size = new Size(133, 20);
+            label12.Size = new Size(54, 20);
             label12.TabIndex = 13;
             label12.Text = "下载源";
+            // 
+            // button13
+            // 
+            button13.Location = new Point(236, 592);
+            button13.Name = "button13";
+            button13.Size = new Size(134, 29);
+            button13.TabIndex = 14;
+            button13.Text = "切换为jsdelivr源";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(889, 626);
+            Controls.Add(button13);
             Controls.Add(label12);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
@@ -412,7 +424,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Form1";
-            Text = "Yimmenu兼容性检查程序-网络版 ";
+            Text = "Yimmenu兼容性检查程序v1.20-网络版 ";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -463,5 +475,6 @@
         private Button button12;
         private System.Windows.Forms.Timer timer3;
         private Label label12;
+        private Button button13;
     }
 }

@@ -20,14 +20,14 @@ namespace YimLauncher
         private int isnonegfw = 0;
         private int logerr = 0;
 
-        private string AliceluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
-        private string AlicelibUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
-        private string wangzixuanUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
-        private string schluaUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
-        private string InfoUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Info.txt";
-        private string YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
-        private string IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
-        private string zhcnUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
+        private string AliceluaUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Alice.lua";
+        private string AlicelibUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/lib.Alice.lua";
+        private string wangzixuanUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/Heist.lua";
+        private string schluaUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/sch.lua";
+        private string InfoUrl = "https://cus.host3650.live/Info.txt";
+        private string YimUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
+        private string IndexUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
+        private string zhcnUrl = "https://ghproxy.com/https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
 
 
 
@@ -45,7 +45,7 @@ namespace YimLauncher
         {
             label10.Text = "";
             label11.Text = "";
-            label12.Text = "下载源:中国大陆ghproxy(自动选择)";
+            label12.Text = "下载源:中国:ghproxy(自动)";
 
 
             timer1.Enabled = false;
@@ -92,7 +92,7 @@ namespace YimLauncher
                     MessageBox.Show("配置文件无法下载,部分功能失效!");
                     timer1.Enabled = false;
                     label4.Text = "网络错误，无法运行文件校验";
-                    label12.Text = "下载源:不可用(自动选择)";
+                    label12.Text = "下载源:不可用(无网络)";
 
                 }
             }
@@ -380,6 +380,7 @@ namespace YimLauncher
                 button2.Enabled = true;
                 button2.Text = "更新异常文件";
             }
+            timer1.Interval = 5000;
         }
         static string CalculateFileHash(string filePath)
         {
@@ -743,13 +744,27 @@ namespace YimLauncher
                 YimUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/YimMenu.dll";
                 IndexUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/index.json";
                 zhcnUrl = "https://github.com/sch-lda/Yim-Launcher/releases/download/bin/zh_CN.json";
-                label12.Text = "下载源:Github(自动选择)";
+                label12.Text = "下载源:国际:Github(自动)";
             }
             else
             {
 
             }
             timer3.Enabled = false;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Alice.lua";
+            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/lib.Alice.lua";
+            wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Heist.lua";
+            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/sch.lua";
+            InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/Info.txt";
+            YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/YimMenu.dll";
+            IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/index.json";
+            zhcnUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@releases/download/bin/zh_CN.json";
+            label12.Text = "下载源:jsDelivr";
+
         }
     }
 }
