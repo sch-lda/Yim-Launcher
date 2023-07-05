@@ -473,7 +473,8 @@ namespace YimLauncher
 
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua")){
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua"))
+            {
                 button9.BackColor = Color.Green;
                 button9.ForeColor = Color.White;
                 button9.Text = "¸üÐÂAlice lua";
@@ -926,7 +927,7 @@ public class DllInjector
         IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle("kernel32.dll"), "LoadLibraryA");
         if (loadLibraryAddr == IntPtr.Zero)
         {
-           // Console.WriteLine("Failed to get address of LoadLibraryA. Error code: " + Marshal.GetLastWin32Error());
+            // Console.WriteLine("Failed to get address of LoadLibraryA. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
@@ -948,11 +949,11 @@ public class DllInjector
         IntPtr remoteThread = CreateRemoteThread(hProcess, IntPtr.Zero, 0, loadLibraryAddr, allocMemAddr, 0, IntPtr.Zero);
         if (remoteThread == IntPtr.Zero)
         {
-           // Console.WriteLine("Failed to create remote thread. Error code: " + Marshal.GetLastWin32Error());
+            // Console.WriteLine("Failed to create remote thread. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
-       // Console.WriteLine("DLL injected successfully.");
+        // Console.WriteLine("DLL injected successfully.");
 
         return true;
     }
