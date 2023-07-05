@@ -1,4 +1,5 @@
 {
+    "default_language_set": false,
     "fallback_default_language": "zh_CN",
     "fallback_languages": {
         "zh_CN": {
