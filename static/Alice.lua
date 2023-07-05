@@ -128,7 +128,6 @@ script.register_looped("OnScriptLoaded", function()
 		if menu["自动破解任务小游戏"]:is_enabled() then
 			menu.instant_mission_minigame_passed()
 		end
-		script_util:yield()
 	end)
 	script.run_in_fiber(function()
 		if menu["自动配置名钻赌场豪劫"]:is_enabled() then
@@ -161,7 +160,6 @@ script.register_looped("OnScriptLoaded", function()
 			end
 			menu.instant_mission_take("fm_mission_controller", 10000000)
 		end
-		script_util:yield()
 	end)
 	script.run_in_fiber(function()
 		if menu["自动配置佩里科岛"]:is_enabled() then
@@ -203,6 +201,5 @@ script.register_looped("OnScriptLoaded", function()
 				menu.cayo_heist_player_cut(i, 149)
 			end
 		end
-		script_util:yield()
 	end)
 end)
