@@ -24,7 +24,7 @@ namespace YimLauncher
         private string AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
         private string AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
         private string wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
-        private string schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+        private string schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
         private string InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
         private string YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
         private string IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
@@ -804,7 +804,7 @@ namespace YimLauncher
                 AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
                 AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
                 wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
-                schluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+                schluaUrl = "https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
                 InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
                 YimUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
                 IndexUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
@@ -823,7 +823,7 @@ namespace YimLauncher
             AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
             AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
             wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
-            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/sch.lua";
+            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/SCH-LUA-YIMMENU@main/sch.lua";
             InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
             YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/YimMenu.dll";
             IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/index.json";
@@ -840,7 +840,7 @@ namespace YimLauncher
             AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
             AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
             wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
-            schluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+            schluaUrl = "https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
             InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
             YimUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
             IndexUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
@@ -857,7 +857,7 @@ namespace YimLauncher
             AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
             AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
             wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
-            schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/sch.lua";
+            schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
             InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
             YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
             IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
@@ -873,7 +873,7 @@ namespace YimLauncher
             AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
             AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
             wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
-            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/sch.lua";
+            schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/SCH-LUA-YIMMENU@main/sch.lua";
             InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
             YimUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/YimMenu.dll";
             IndexUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/index.json";
