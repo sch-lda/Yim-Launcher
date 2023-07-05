@@ -108,17 +108,11 @@ Alice["Alice"]:add_button("名钻赌场豪劫强制玩家准备", menu.casino_he
 
 Alice["Alice"]:add_button("佩里科岛强制玩家准备", menu.cayo_heist_force_player_ready) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
-Alice["Alice"]:add_button("破解任务小游戏", menu.heist_crack_minigame_passed) Alice["Alice"]:add_sameline()
+menu["自动配置名钻赌场豪劫"] = Alice["Alice"]:add_checkbox("自动配置名钻赌场豪劫") Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("更改右下角总收入", function()
-	menu.instant_heist_take("fm_mission_controller", 10000000)
-	menu.instant_heist_take("fm_mission_controller_2020", 10000000)
-end) Alice["Alice"]:add_sameline()
+menu["自动配置佩里科岛"] = Alice["Alice"]:add_checkbox("自动配置佩里科岛") Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("更改右下角团队生命数", function()
-	menu.instant_heist_team_life("fm_mission_controller", 999999999)
-	menu.instant_heist_team_life("fm_mission_controller_2020", 999999999)
-end) Alice["Alice"]:add_sameline()
+menu["自动破解任务小游戏"] = Alice["Alice"]:add_checkbox("自动破解任务小游戏") Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_separator()
 Alice["Alice"]:add_text("解锁选项")
@@ -127,3 +121,85 @@ Alice["Alice"]:add_button("解锁全部DLC物品", menu.unlock_all_packed_bool) 
 
 Alice["Alice"]:add_separator()
 Alice["Alice"]:add_text("null")
+
+script.register_looped("OnScriptLoaded", function()
+	menu.disable_bounds_death() -- 禁用越界死亡
+	script.run_in_fiber(function()
+		if menu["自动破解任务小游戏"]:is_enabled() then
+			menu.instant_mission_minigame_passed()
+		end
+	end)
+	script.run_in_fiber(function()
+		if menu["自动配置名钻赌场豪劫"]:is_enabled() then
+			if stats.stat_get_int("MPx_CAS_HEIST_FLOW") < -1610744257 then
+				stats.stat_set_int("MPx_CAS_HEIST_FLOW", -1610744257)
+			end
+			if stats.stat_get_int("MPx_CAS_HEIST_FLOW") >= -1610744257 then
+				if stats.stat_get_int("MPx_CAS_HEIST_FLOW") >= -1610743809 then
+					stats.stat_set_int("MPx_CAS_HEIST_FLOW", -1)
+				end
+				stats.stat_get_int("MPx_H3OPT_ACCESSPOINTS", 2047)
+				stats.stat_get_int("MPx_H3OPT_POI", 1023)
+				stats.stat_get_int("MPx_H3OPT_BITSET1", -1)
+				stats.stat_get_int("MPx_H3OPT_DISRUPTSHIP", 3)
+				stats.stat_get_int("MPx_H3OPT_KEYLEVELS", 2)
+				stats.stat_get_int("MPx_H3OPT_VEHS", 3)
+				stats.stat_get_int("MPx_H3OPT_WEAPS", 0)
+				stats.stat_get_int("MPx_H3OPT_MASKS", 4)
+				stats.stat_get_int("MPx_H3OPT_BITSET0", -17)
+				stats.stat_set_int("MPx_H3OPT_TARGET", 3)
+				stats.stat_set_int("MPx_H3OPT_APPROACH", 3)
+				stats.stat_set_int("MPx_H3_LAST_APPROACH", 0)
+				stats.stat_set_int("MPx_H3_HARD_APPROACH", 3)
+				stats.stat_set_int("MPx_H3OPT_CREWWEAP", 1)
+				stats.stat_set_int("MPx_H3OPT_CREWDRIVER", 1)
+				stats.stat_set_int("MPx_H3OPT_CREWHACKER", 5)
+			end
+			for i = 0, 3 do
+				menu.casino_heist_player_cut(i, 107)
+			end
+			menu.instant_mission_take("fm_mission_controller", 10000000)
+		end
+	end)
+	script.run_in_fiber(function()
+		if menu["自动配置佩里科岛"]:is_enabled() then
+			if stats.stat_get_int("MPx_H4_PLAYTHROUGH_STATUS") == 0 then
+				stats.stat_set_int("MPx_H4_PLAYTHROUGH_STATUS", 1)
+			end
+			if stats.stat_get_int("MPx_H4_PLAYTHROUGH_STATUS") > 0 then
+				stats.stat_set_int("MPx_H4_PROGRESS", -4097)
+				stats.stat_set_int("MPx_H4CNF_TROJAN", 2)
+				stats.stat_set_int("MPx_H4CNF_WEAPONS", 1)
+				stats.stat_set_int("MPx_H4CNF_TARGET", 5)
+				stats.stat_set_int("MPx_H4CNF_BS_ENTR", 63)
+				stats.stat_set_int("MPx_H4CNF_APPROACH", 65535)
+				stats.stat_set_int("MPx_H4CNF_GRAPPEL", 5156)
+				stats.stat_set_int("MPx_H4CNF_UNIFORM", 5256)
+				stats.stat_set_int("MPx_H4CNF_BOLTCUT", 4424)
+				stats.stat_set_int("MPx_H4CNF_BS_GEN", -1)
+				stats.stat_set_int("MPx_H4_MISSIONS", 65535)
+				stats.stat_set_int("MPx_H4CNF_WEP_DISRP", 3)
+				stats.stat_set_int("MPx_H4CNF_ARM_DISRP", 3)
+				stats.stat_set_int("MPx_H4CNF_HEL_DISRP", 3)
+				stats.stat_set_int("MPx_H4CNF_BS_ABIL", 63)
+				stats.stat_set_int("MPx_H4LOOT_CASH_I_SCOPED", stats.stat_get_int("MPx_H4LOOT_CASH_I"))
+				stats.stat_set_int("MPx_H4LOOT_CASH_C_SCOPED", stats.stat_get_int("MPx_H4LOOT_CASH_C"))
+				stats.stat_set_int("MPx_H4LOOT_CASH_V", stats.stat_get_int("MPx_H4LOOT_CASH_V"))
+				stats.stat_set_int("MPx_H4LOOT_WEED_I_SCOPED", stats.stat_get_int("MPx_H4LOOT_WEED_I"))
+				stats.stat_set_int("MPx_H4LOOT_WEED_C_SCOPED", stats.stat_get_int("MPx_H4LOOT_WEED_C"))
+				stats.stat_set_int("MPx_H4LOOT_WEED_V", stats.stat_get_int("MPx_H4LOOT_WEED_V"))
+				stats.stat_set_int("MPx_H4LOOT_COKE_I_SCOPED", stats.stat_get_int("MPx_H4LOOT_COKE_I"))
+				stats.stat_set_int("MPx_H4LOOT_COKE_C_SCOPED", stats.stat_get_int("MPx_H4LOOT_COKE_C"))
+				stats.stat_set_int("MPx_H4LOOT_COKE_V", stats.stat_get_int("MPx_H4LOOT_COKE_V"))
+				stats.stat_set_int("MPx_H4LOOT_GOLD_I_SCOPED", stats.stat_get_int("MPx_H4LOOT_GOLD_I"))
+				stats.stat_set_int("MPx_H4LOOT_GOLD_C_SCOPED", stats.stat_get_int("MPx_H4LOOT_GOLD_C"))
+				stats.stat_set_int("MPx_H4LOOT_GOLD_V", stats.stat_get_int("MPx_H4LOOT_GOLD_V"))
+				stats.stat_set_int("MPx_H4LOOT_PAINT_SCOPED", stats.stat_get_int("MPx_H4LOOT_PAINT"))
+				stats.stat_set_int("MPx_H4LOOT_PAINT_V", stats.stat_get_int("MPx_H4LOOT_PAINT_V"))
+			end
+			for i = 0, 3 do
+				menu.cayo_heist_player_cut(i, 149)
+			end
+		end
+	end)
+end)
