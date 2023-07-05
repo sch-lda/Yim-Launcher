@@ -96,23 +96,28 @@ Alice["Alice"]:add_button("自动完成佩里科岛", function()
 	menu.instant_mission_passed("fm_mission_controller_2020", true)
 end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
-Alice["Alice"]:add_button("末日豪劫强制玩家准备", menu.doomsday_heist_force_player_ready)
-Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("名钻赌场豪劫强制玩家准备", menu.casino_heist_force_player_ready)
-Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("佩里科岛强制玩家准备", menu.cayo_heist_force_player_ready)
-Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("破解任务小游戏", menu.heist_crack_minigame_passed)
-Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("呼叫虎鲸", menu.call_kosatka)
-Alice["Alice"]:add_sameline()
+Alice["Alice"]:add_button("呼叫虎鲸", menu.call_kosatka) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_button("传送到虎鲸", function()
 	entity.teleport_to_position(PLAYER.PLAYER_ID(), {1561.115845, 385.872559, -50.985352})
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("末日豪劫强制玩家准备", menu.doomsday_heist_force_player_ready) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("名钻赌场豪劫强制玩家准备", menu.casino_heist_force_player_ready) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("佩里科岛强制玩家准备", menu.cayo_heist_force_player_ready) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["Alice"]:add_button("破解任务小游戏", menu.heist_crack_minigame_passed) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("更改右下角总收入", function()
+	menu.instant_heist_take("fm_mission_controller", 10000000)
+	menu.instant_heist_take("fm_mission_controller_2020", 10000000)
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("更改右下角团队生命数", function()
+	menu.instant_heist_team_life("fm_mission_controller", 999999999)
+	menu.instant_heist_team_life("fm_mission_controller_2020", 999999999)
 end) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_separator()
@@ -121,4 +126,4 @@ Alice["Alice"]:add_text("解锁选项")
 Alice["Alice"]:add_button("解锁全部DLC物品", menu.unlock_all_packed_bool) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("null")
+Alice["Alice"]:add_text("null") menu.print(NETWORK.NETWORK_GET_INSTANCE_ID_OF_THIS_SCRIPT())

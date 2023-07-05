@@ -919,21 +919,21 @@ public class DllInjector
         IntPtr hProcess = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, 0, (uint)processId);
         if (hProcess == IntPtr.Zero)
         {
-            Console.WriteLine("Failed to open process. Error code: " + Marshal.GetLastWin32Error());
+            //Console.WriteLine("Failed to open process. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
         IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle("kernel32.dll"), "LoadLibraryA");
         if (loadLibraryAddr == IntPtr.Zero)
         {
-            Console.WriteLine("Failed to get address of LoadLibraryA. Error code: " + Marshal.GetLastWin32Error());
+           // Console.WriteLine("Failed to get address of LoadLibraryA. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
         IntPtr allocMemAddr = VirtualAllocEx(hProcess, IntPtr.Zero, (uint)((dllPath.Length + 1) * Marshal.SizeOf(typeof(char))), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
         if (allocMemAddr == IntPtr.Zero)
         {
-            Console.WriteLine("Failed to allocate memory in remote process. Error code: " + Marshal.GetLastWin32Error());
+            //Console.WriteLine("Failed to allocate memory in remote process. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
@@ -941,18 +941,18 @@ public class DllInjector
         int bytesWritten;
         if (!WriteProcessMemory(hProcess, allocMemAddr, dllPathBytes, (uint)(dllPathBytes.Length), out bytesWritten))
         {
-            Console.WriteLine("Failed to write DLL path to remote process. Error code: " + Marshal.GetLastWin32Error());
+            //Console.WriteLine("Failed to write DLL path to remote process. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
         IntPtr remoteThread = CreateRemoteThread(hProcess, IntPtr.Zero, 0, loadLibraryAddr, allocMemAddr, 0, IntPtr.Zero);
         if (remoteThread == IntPtr.Zero)
         {
-            Console.WriteLine("Failed to create remote thread. Error code: " + Marshal.GetLastWin32Error());
+           // Console.WriteLine("Failed to create remote thread. Error code: " + Marshal.GetLastWin32Error());
             return false;
         }
 
-        Console.WriteLine("DLL injected successfully.");
+       // Console.WriteLine("DLL injected successfully.");
 
         return true;
     }
