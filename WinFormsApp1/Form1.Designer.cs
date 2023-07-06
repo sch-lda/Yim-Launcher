@@ -42,6 +42,7 @@
             label10 = new Label();
             button8 = new Button();
             groupBox2 = new GroupBox();
+            button16 = new Button();
             button12 = new Button();
             label6 = new Label();
             groupBox3 = new GroupBox();
@@ -67,27 +68,36 @@
             label13 = new Label();
             button13 = new Button();
             label14 = new Label();
+            groupBox7 = new GroupBox();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
+            groupBox7.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(6, 166);
+            button1.Location = new Point(6, 197);
             button1.Name = "button1";
-            button1.Size = new Size(181, 29);
+            button1.Size = new Size(146, 29);
             button1.TabIndex = 0;
-            button1.Text = "Yimmenu注入测试";
+            button1.Text = "注入测试(汉化版)";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(6, 111);
+            button2.Location = new Point(6, 119);
             button2.Name = "button2";
             button2.Size = new Size(181, 29);
             button2.TabIndex = 1;
@@ -98,7 +108,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.ForeColor = Color.Coral;
+            label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.Location = new Point(6, 43);
             label1.Name = "label1";
             label1.Size = new Size(99, 20);
@@ -143,7 +153,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 143);
+            label5.Location = new Point(6, 155);
             label5.Name = "label5";
             label5.Size = new Size(53, 20);
             label5.TabIndex = 6;
@@ -154,9 +164,9 @@
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(button8);
-            groupBox1.Location = new Point(12, 262);
+            groupBox1.Location = new Point(12, 288);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(357, 327);
+            groupBox1.Size = new Size(357, 301);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Yim日志分析-开发中";
@@ -191,6 +201,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(button16);
             groupBox2.Controls.Add(button12);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label4);
@@ -202,14 +213,24 @@
             groupBox2.Controls.Add(label3);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(357, 244);
+            groupBox2.Size = new Size(357, 270);
             groupBox2.TabIndex = 8;
             groupBox2.TabStop = false;
             groupBox2.Text = "文件检查";
             // 
+            // button16
+            // 
+            button16.Location = new Point(158, 197);
+            button16.Name = "button16";
+            button16.Size = new Size(153, 29);
+            button16.TabIndex = 9;
+            button16.Text = "注入测试(官方版)";
+            button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
+            // 
             // button12
             // 
-            button12.Location = new Point(224, 207);
+            button12.Location = new Point(224, 232);
             button12.Name = "button12";
             button12.Size = new Size(127, 29);
             button12.TabIndex = 8;
@@ -220,7 +241,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(6, 198);
+            label6.Location = new Point(11, 236);
             label6.Name = "label6";
             label6.Size = new Size(94, 20);
             label6.TabIndex = 7;
@@ -455,11 +476,92 @@
             label14.TabIndex = 25;
             label14.Text = "除了Github,其他源下载到的文件可能都不是最新的,存在约24h的延迟。但是在中国大陆访问GitHub需要合适的网络环境";
             // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(label21);
+            groupBox7.Controls.Add(label20);
+            groupBox7.Controls.Add(label19);
+            groupBox7.Controls.Add(label18);
+            groupBox7.Controls.Add(label17);
+            groupBox7.Controls.Add(label16);
+            groupBox7.Controls.Add(label15);
+            groupBox7.Location = new Point(770, 20);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(260, 266);
+            groupBox7.TabIndex = 26;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "信息";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(6, 155);
+            label21.Name = "label21";
+            label21.Size = new Size(69, 20);
+            label21.TabIndex = 6;
+            label21.Text = "更新日期";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(6, 135);
+            label20.Name = "label20";
+            label20.Size = new Size(39, 20);
+            label20.TabIndex = 5;
+            label20.Text = "版别";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(6, 115);
+            label19.Name = "label19";
+            label19.Size = new Size(69, 20);
+            label19.TabIndex = 4;
+            label19.Text = "上次注入";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(6, 23);
+            label18.Name = "label18";
+            label18.Size = new Size(69, 20);
+            label18.TabIndex = 3;
+            label18.Text = "操作系统";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(6, 85);
+            label17.Name = "label17";
+            label17.Size = new Size(62, 20);
+            label17.TabIndex = 2;
+            label17.Text = "label17";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(6, 65);
+            label16.Name = "label16";
+            label16.Size = new Size(62, 20);
+            label16.TabIndex = 1;
+            label16.Text = "label16";
+            label16.Click += label16_Click;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(6, 45);
+            label15.Name = "label15";
+            label15.Size = new Size(62, 20);
+            label15.TabIndex = 0;
+            label15.Text = "label15";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 650);
+            ClientSize = new Size(1039, 650);
+            Controls.Add(groupBox7);
             Controls.Add(label14);
             Controls.Add(button15);
             Controls.Add(button13);
@@ -486,6 +588,8 @@
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -530,5 +634,14 @@
         private Button button14;
         private Button button13;
         private Label label14;
+        private GroupBox groupBox7;
+        private Label label15;
+        private Label label16;
+        private Label label17;
+        private Label label18;
+        private Label label20;
+        private Label label19;
+        private Label label21;
+        private Button button16;
     }
 }

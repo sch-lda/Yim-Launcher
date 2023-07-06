@@ -29,7 +29,7 @@ namespace YimLauncher
         private string YimUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/YimMenu.dll";
         private string IndexUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/index.json";
         private string zhcnUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/zh_CN.json";
-
+        private string OcYimUrl = "https://ghproxy.com/https://github.com/YimMenu/YimMenu/releases/download/nightly/YimMenu.dll";
         static async Task DownloadFileAsync(string url, string fileName)
         {
             using (var client = new WebClient())
@@ -56,6 +56,9 @@ namespace YimLauncher
             label11.Text = "";
             label12.Text = "下载源:中国:ghproxy(自动)";
 
+            label15.Text = "系统:" + Environment.OSVersion.Version.ToString();
+            label16.Text = "运行库:" + Environment.Version.ToString();
+            label17.Text = "用户:" + Environment.UserName.ToString();
 
             timer1.Enabled = false;
             button2.Enabled = false;
@@ -109,8 +112,8 @@ namespace YimLauncher
                     {
                         try
                         {
-                            string fallbackUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
-                            client.DownloadFile(fallbackUrl, InfoTxt);
+                            string fallbackUrl2 = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
+                            client.DownloadFile(fallbackUrl2, InfoTxt);
                             timer1.Enabled = true;
 
                         }
@@ -181,6 +184,52 @@ namespace YimLauncher
             {
 
             }
+
+            string coutPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/cout.log";
+            string searchText1 = "线上小助手汉化";
+
+            try
+            {
+
+
+
+                if (File.Exists(coutPath))
+                {
+                    string[] lines = File.ReadAllLines(coutPath);
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains(searchText1))
+                        {
+                            label20.Text = "Yim版本:汉化版";
+
+                        }
+
+                        if (line.Contains("Initializing"))
+                        {
+                            label20.Text = "Yim版本:官方版";
+
+                        }
+
+                        if (line.StartsWith("\t更新日期:"))
+                        {
+                            string dateCHS = line.Substring(line.IndexOf(":") + 1).Trim();
+                            label21.Text = "Yim更新日期:\n" + dateCHS;
+                        }
+                        if (line.StartsWith("\tDate:"))
+                        {
+                            string dateOc = line.Substring(line.IndexOf(":") + 1).Trim();
+                            label21.Text = "Yim更新日期:\n" + dateOc;
+                        }
+
+                    }
+                }
+            }
+            catch
+            {
+                label20.Text = "无法读取Yim日志";
+
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -308,7 +357,7 @@ namespace YimLauncher
                 else
                 {
                     label1.Text = "Yimmenu(诊断程序专用) 过时";
-                    label1.ForeColor = Color.Coral;
+                    label1.ForeColor = Color.Black;
                     errct = errct + 1;
                     isdllok = 0;
                 }
@@ -316,7 +365,7 @@ namespace YimLauncher
             else
             {
                 label1.Text = "Yimmenu(诊断程序专用) 缺失";
-                label1.ForeColor = Color.Red;
+                label1.ForeColor = Color.Black;
                 errct = errct + 1;
                 isdllok = 0;
 
@@ -385,7 +434,7 @@ namespace YimLauncher
                 }
                 else
                 {
-                    label3.Text = "中文语言文件 过时";
+                    label3.Text = "中文语言文件 改变,若中文不正常请更新";
                     label3.ForeColor = Color.Red;
                     errct = errct + 1;
 
@@ -890,6 +939,135 @@ namespace YimLauncher
             button15.BackColor = Color.Cyan;
             button14.BackColor = Color.White;
             button13.BackColor = Color.White;
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            string Officialdllcdn = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenuOc.dll";
+            string Officialdllraw = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenuOc.dll";
+
+            label5.Text = "Yim官方版正在下载";
+            label5.ForeColor = Color.Red;
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile(OcYimUrl, Officialdllcdn);
+
+                    label5.Text = "Yim官方版下载完成";
+                    label5.ForeColor = Color.Black;
+                    Process GTA5Process = null;
+                    string yimPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
+
+                    foreach (var item in Process.GetProcessesByName("GTA5"))
+                    {
+                        if (item.MainWindowHandle == IntPtr.Zero)
+                            continue;
+
+                        if (item.MainModule.FileVersionInfo.LegalCopyright.Contains("Rockstar Games Inc."))
+                        {
+                            GTA5Process = item;
+                            break;
+                        }
+                    }
+                    try
+                    {
+                        string InjectTMP = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimLauncher", "tmp");
+                        string randomFileName = "octmp_" + GenerateRandomNumber() + ".dll";
+                        string InjectTMPdll = Path.Combine(InjectTMP, randomFileName);
+
+                        // 创建目标文件夹（如果不存在）
+                        Directory.CreateDirectory(InjectTMP);
+
+                        // 复制文件
+                        File.Copy(Officialdllcdn, InjectTMPdll);
+
+                        if (GTA5Process != null)
+                        {
+                            DllInjector.InjectDll(GTA5Process.Id, InjectTMPdll);
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("GTA5未运行!");
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        label5.Text = "尝试备用方案";
+
+                        client.DownloadFile(OcYimUrl, Officialdllcdn);
+
+                        label5.Text = "Yim官方版下载完成";
+                        label5.ForeColor = Color.Black;
+                        Process GTA5Process = null;
+                        string yimPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimLauncher/YimMenu.dll";
+
+                        foreach (var item in Process.GetProcessesByName("GTA5"))
+                        {
+                            if (item.MainWindowHandle == IntPtr.Zero)
+                                continue;
+
+                            if (item.MainModule.FileVersionInfo.LegalCopyright.Contains("Rockstar Games Inc."))
+                            {
+                                GTA5Process = item;
+                                break;
+                            }
+                        }
+                        try
+                        {
+                            string InjectTMP = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimLauncher", "tmp");
+                            string randomFileName = "octmp_" + GenerateRandomNumber() + ".dll";
+                            string InjectTMPdll = Path.Combine(InjectTMP, randomFileName);
+
+                            // 创建目标文件夹（如果不存在）
+                            Directory.CreateDirectory(InjectTMP);
+
+                            // 复制文件
+                            File.Copy(Officialdllcdn, InjectTMPdll);
+
+                            if (GTA5Process != null)
+                            {
+                                DllInjector.InjectDll(GTA5Process.Id, InjectTMPdll);
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("GTA5未运行!");
+                            }
+
+                        }
+                        catch
+                        {
+
+                        }
+
+                    }
+                    catch {
+
+                        label5.Text = "下载失败";
+
+                    }
+
+                }
+            }
+
         }
     }
 }
