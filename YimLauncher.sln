@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.33808.371
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{F914A5C2-B074-430C-B90A-C80C8D34BBFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YimLauncher", "YimLauncher\YimLauncher.csproj", "{F914A5C2-B074-430C-B90A-C80C8D34BBFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
