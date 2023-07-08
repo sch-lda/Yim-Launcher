@@ -22,7 +22,7 @@ namespace YimLauncher
         private int logerr = 0;
 
         private string AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
-        private string AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+        private string AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.lua";
         private string wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
         private string schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
         private string InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
@@ -530,7 +530,7 @@ namespace YimLauncher
 
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib.lua"))
             {
                 button9.BackColor = Color.Green;
                 button9.ForeColor = Color.White;
@@ -544,7 +544,7 @@ namespace YimLauncher
 
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/YimMenu-HeistLua.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib[Alice].lua"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/YimMenu-HeistLua.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib.lua"))
             {
                 button11.BackColor = Color.Green;
                 button11.ForeColor = Color.White;
@@ -718,7 +718,7 @@ namespace YimLauncher
         {
 
             string AliceluaDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/Alice.lua";
-            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib[Alice].lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib.lua";
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
             {
@@ -810,7 +810,7 @@ namespace YimLauncher
         {
 
             string wangzixuanDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/YimMenu-HeistLua.lua";
-            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib[Alice].lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib.lua";
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
             {
@@ -859,7 +859,7 @@ namespace YimLauncher
             {
                 isnonegfw = 1;
                 AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
-                AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+                AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.lua";
                 wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
                 schluaUrl = "https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
                 InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
@@ -878,7 +878,7 @@ namespace YimLauncher
         private void button13_Click(object sender, EventArgs e)
         {
             AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
-            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
+            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.lua";
             wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
             schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/SCH-LUA-YIMMENU@main/sch.lua";
             InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
@@ -893,7 +893,7 @@ namespace YimLauncher
         private void button13_Click_1(object sender, EventArgs e)
         {
             AliceluaUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
-            AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+            AlicelibUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.lua";
             wangzixuanUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
             schluaUrl = "https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
             InfoUrl = "https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
@@ -910,7 +910,7 @@ namespace YimLauncher
         private void button14_Click(object sender, EventArgs e)
         {
             AliceluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Alice.lua";
-            AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.Alice.lua";
+            AlicelibUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/lib.lua";
             wangzixuanUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Heist.lua";
             schluaUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/SCH-LUA-YIMMENU/main/sch.lua";
             InfoUrl = "https://ghproxy.com/https://raw.githubusercontent.com/sch-lda/Yim-Launcher/main/static/Info.txt";
@@ -926,7 +926,7 @@ namespace YimLauncher
         private void button15_Click(object sender, EventArgs e)
         {
             AliceluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Alice.lua";
-            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.Alice.lua";
+            AlicelibUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/lib.lua";
             wangzixuanUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Heist.lua";
             schluaUrl = "https://cdn.jsdelivr.net/gh/sch-lda/SCH-LUA-YIMMENU@main/sch.lua";
             InfoUrl = "https://cdn.jsdelivr.net/gh/sch-lda/Yim-Launcher@main/static/Info.txt";
