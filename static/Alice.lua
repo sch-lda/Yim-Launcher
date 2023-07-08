@@ -1,5 +1,5 @@
 --package.path = os.getenv("UserProfile").."/AppData/Roaming/YimMenu/scripts/?.lua"
-require("lib/lib[Alice]")
+require("Alice-lib/lib")
 Alice = {}
 Alice["Alice"] = gui.get_tab("GUI_TAB_LUA_SCRIPTS")
 
@@ -121,12 +121,57 @@ Alice["Alice"]:add_button("开启末日豪劫 3 [大结局]", function()
 	stats.stat_set_int("MPx_GANGOPS_FLOW_MISSION_PROG", 65535)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_NOTIFICATIONS", 1557)
 	menu.restart_facility_board()
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["Alice"]:add_button("困难全福银行 [人均600w]", function()
+	menu.apartment_heist_player_cut(0--[[ 房主[player_0] --]], 2385)
+	menu.apartment_heist_player_cut(1--[[ 队友[player_1] --]], 2385)
+	--menu.apartment_heist_player_cut(2--[[ 队友[player_2] --]], 2385) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
+	--menu.apartment_heist_player_cut(3--[[ 队友[player_3] --]], 2385) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("困难全福银行 [人均1500w]", function()
+	menu.apartment_heist_player_cut(0--[[ 房主[player_0] --]], 5962)
+	menu.apartment_heist_player_cut(1--[[ 队友[player_1] --]], 5962)
+	--menu.apartment_heist_player_cut(2--[[ 队友[player_2] --]], 5962) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
+	--menu.apartment_heist_player_cut(3--[[ 队友[player_3] --]], 5962) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
 end) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_separator()
 Alice["Alice"]:add_text("解锁选项")
 
 Alice["Alice"]:add_button("解锁全部DLC物品", menu.unlock_all_packed_bool) Alice["Alice"]:add_sameline()
+
+VehicleList = {
+	"inductor", 
+	"inductor2", 
+	"raiju", 
+	"monstrociti", 
+	"coureur", 
+	"ratel", 
+	"stingertt", 
+	"avenger3", 
+	"avenger4", 
+	"clique2", 
+	"streamer216", 
+	"brigham", 
+	"gauntlet6", 
+	"conada2", 
+	"l35", 
+	"speedo5", 
+	"buffalo5"
+}
+Alice["Alice"]:add_button("打印VehicleMods", function()
+	for i = 1, #VehicleList do
+		local vehicles = vehicle.create_vehicle(VehicleList[i], {ENTITY.GET_ENTITY_COORDS(PLAYER.GET_PLAYER_PED(PLAYER.PLAYER_ID())).x, ENTITY.GET_ENTITY_COORDS(PLAYER.GET_PLAYER_PED(PLAYER.PLAYER_ID())).y, ENTITY.GET_ENTITY_COORDS(PLAYER.GET_PLAYER_PED(PLAYER.PLAYER_ID())).z + 5}, true)
+		local VehicleMods = {}
+		for mod = 0, 48 do
+			VehicleMods[mod + 1] = VEHICLE.GET_NUM_VEHICLE_MODS(vehicles, mod) - 1
+		end
+		menu.print("joaat".."("..'"'..VehicleList[i]..'"'..")"..", ".."{"..VehicleMods[1]..", "..VehicleMods[2]..", "..VehicleMods[3]..", "..VehicleMods[4]..", "..VehicleMods[5]..", "..VehicleMods[6]..", "..VehicleMods[7]..", "..VehicleMods[8]..", "..VehicleMods[9]..", "..VehicleMods[10]..", "..VehicleMods[11]..", "..VehicleMods[12]..", "..VehicleMods[13]..", "..VehicleMods[14]..", "..VehicleMods[15]..", "..VehicleMods[16]..", "..VehicleMods[17]..", "..VehicleMods[18]..", "..VehicleMods[19]..", "..VehicleMods[20]..", "..VehicleMods[21]..", "..VehicleMods[22]..", ".."math.random(0, 14)"..", "..VehicleMods[24]..", "..VehicleMods[25]..", "..VehicleMods[26]..", "..VehicleMods[27]..", "..VehicleMods[28]..", "..VehicleMods[29]..", "..VehicleMods[30]..", "..VehicleMods[31]..", "..VehicleMods[32]..", "..VehicleMods[33]..", "..VehicleMods[34]..", "..VehicleMods[35]..", "..VehicleMods[36]..", "..VehicleMods[37]..", "..VehicleMods[38]..", "..VehicleMods[39]..", "..VehicleMods[40]..", "..VehicleMods[41]..", "..VehicleMods[42]..", "..VehicleMods[43]..", "..VehicleMods[44]..", "..VehicleMods[45]..", "..VehicleMods[46]..", "..VehicleMods[47]..", "..VehicleMods[48]..", "..VehicleMods[49].."}")
+		ENTITY.DELETE_ENTITY(vehicles)
+	end
+end) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_separator()
 Alice["Alice"]:add_text("null")
