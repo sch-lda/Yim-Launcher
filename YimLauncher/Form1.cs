@@ -530,7 +530,7 @@ namespace YimLauncher
 
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib.lua"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice-lib/lib.lua"))
             {
                 button9.BackColor = Color.Green;
                 button9.ForeColor = Color.White;
@@ -544,7 +544,7 @@ namespace YimLauncher
 
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/YimMenu-HeistLua.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib/lib.lua"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/YimMenu-HeistLua.lua") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice-lib/lib.lua"))
             {
                 button11.BackColor = Color.Green;
                 button11.ForeColor = Color.White;
@@ -718,7 +718,7 @@ namespace YimLauncher
         {
 
             string AliceluaDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/Alice.lua";
-            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib.lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/Alice-lib/lib.lua";
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
             {
@@ -735,7 +735,7 @@ namespace YimLauncher
                 }
 
             }
-            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice-lib");
 
 
             using (WebClient client = new WebClient())
@@ -810,7 +810,7 @@ namespace YimLauncher
         {
 
             string wangzixuanDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/YimMenu-HeistLua.lua";
-            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/lib/lib.lua";
+            string AlicelibDes = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Yimmenu/scripts/Alice-lib/lib.lua";
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts"))
             {
@@ -827,7 +827,7 @@ namespace YimLauncher
                 }
 
             }
-            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/lib");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YimMenu/scripts/Alice-lib");
 
 
             using (WebClient client = new WebClient())
