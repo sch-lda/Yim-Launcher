@@ -1,10 +1,9 @@
---package.path = os.getenv("UserProfile").."/AppData/Roaming/YimMenu/scripts/?.lua"
 require("Alice-lib/lib")
 Alice = {}
 Alice["Alice"] = gui.get_tab("GUI_TAB_LUA_SCRIPTS")
 
-Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("世界选项")
+------------------------------------------------------------------------------------------------ 世界选项
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<世界选项>")
 
 Alice["Alice"]:add_button("离开GTA线上模式", function()
 	menu.change_session(-1)
@@ -15,11 +14,10 @@ Alice["Alice"]:add_button("仅限邀请的战局", function()
 end) Alice["Alice"]:add_sameline()
 
 menu["全部爆炸"] = Alice["Alice"]:add_checkbox("全部爆炸") Alice["Alice"]:add_sameline()
-
 menu["全部崩溃"] = Alice["Alice"]:add_checkbox("全部崩溃") Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("资产选项")
+------------------------------------------------------------------------------------------------ 资产选项
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<资产选项>")
 
 Alice["Alice"]:add_button("打开地堡APP", function()
 	script.start_new_script("appBunkerBusiness", 1424)
@@ -46,11 +44,15 @@ Alice["Alice"]:add_button("幸运轮盘获得奖品载具", function()
 end) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_button("赌场老虎机100%中奖", menu.casion_rig_slot) Alice["Alice"]:add_sameline()
-
 menu["自动玩赌场老虎机"] = Alice["Alice"]:add_checkbox("自动玩赌场老虎机") Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("抢劫杂项")
+------------------------------------------------------------------------------------------------ 解锁选项
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<解锁选项>")
+
+Alice["Alice"]:add_button("解锁全部DLC物品", menu.unlock_all_packed_bool) Alice["Alice"]:add_sameline()
+
+------------------------------------------------------------------------------------------------ 抢劫杂项
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<抢劫杂项>")
 
 Alice["Alice"]:add_button("呼叫虎鲸", menu.call_kosatka) Alice["Alice"]:add_sameline()
 
@@ -65,12 +67,6 @@ Alice["Alice"]:add_button("传送到设施策划屏幕", function()
 end) Alice["Alice"]:add_sameline()
 
 Alice["Alice"]:add_button("刷新设施面板", menu.restart_facility_board) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
-
-Alice["Alice"]:add_button("末日豪劫强制玩家准备", menu.doomsday_heist_force_player_ready) Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("名钻赌场豪劫强制玩家准备", menu.casino_heist_force_player_ready) Alice["Alice"]:add_sameline()
-
-Alice["Alice"]:add_button("佩里科岛强制玩家准备", menu.cayo_heist_force_player_ready) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
 Alice["Alice"]:add_button("无限团队生命数", function()
 	menu.instant_mission_team_life("fm_mission_controller", 999999999)
@@ -92,56 +88,182 @@ end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
 menu["自动破解任务小游戏"] = Alice["Alice"]:add_checkbox("自动破解任务小游戏") Alice["Alice"]:add_sameline()
 
-menu["开启公寓抢劫 [大结局]"] = Alice["Alice"]:add_checkbox("开启公寓抢劫 [大结局]") Alice["Alice"]:add_sameline()
+------------------------------------------------------------------------------------------------ 公寓抢劫
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<公寓抢劫>")
 
-menu["自动配置名钻赌场豪劫"] = Alice["Alice"]:add_checkbox("自动配置名钻赌场豪劫") Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+menu["跳过公寓抢劫"] = Alice["Alice"]:add_checkbox("跳过公寓抢劫") Alice["Alice"]:add_separator()
+Alice["公寓抢劫本地分红"] = Alice["Alice"]:add_input_int("a") Alice["Alice"]:add_sameline()
 
-menu["自动配置佩里科岛"] = Alice["Alice"]:add_checkbox("自动配置佩里科岛") Alice["Alice"]:add_sameline()
+Alice["Alice"]:add_button("写入公寓抢劫本地分红", function()
+	menu.instant_heist_cut(Alice["公寓抢劫本地分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
-menu["自动配置别惹德瑞"] = Alice["Alice"]:add_checkbox("自动配置别惹德瑞") Alice["Alice"]:add_sameline()
+Alice["公寓抢劫分红"] = Alice["Alice"]:add_input_int("b") Alice["Alice"]:add_sameline()
 
-menu["自动配置联合储蓄"] = Alice["Alice"]:add_checkbox("自动配置联合储蓄") Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+Alice["Alice"]:add_button("写入公寓抢劫分红", function()
+	menu.apartment_heist_player_cut(1, Alice["公寓抢劫分红"]:get_value())
+	menu.apartment_heist_player_cut(2, Alice["公寓抢劫分红"]:get_value())
+	menu.apartment_heist_player_cut(3, Alice["公寓抢劫分红"]:get_value())
+	menu.apartment_heist_player_cut(0, Alice["公寓抢劫分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
-Alice["Alice"]:add_button("开启末日豪劫 1 [大结局]", function()
+------------------------------------------------------------------------------------------------ 末日豪劫
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<末日豪劫>")
+
+Alice["Alice"]:add_button("末日豪劫强制玩家准备", menu.doomsday_heist_force_player_ready) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("数据泄露", function()
 	stats.stat_set_int("MPx_GANGOPS_HEIST_STATUS", -229383)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_MISSION_PROG", 65535)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_NOTIFICATIONS", 1557)
 	menu.restart_facility_board()
 end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("开启末日豪劫 2 [大结局]", function()
+Alice["Alice"]:add_button("博格丹危机", function()
 	stats.stat_set_int("MPx_GANGOPS_HEIST_STATUS", -229382)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_MISSION_PROG", 65535)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_NOTIFICATIONS", 1557)
 	menu.restart_facility_board()
 end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("开启末日豪劫 3 [大结局]", function()
+Alice["Alice"]:add_button("末日将至", function()
 	stats.stat_set_int("MPx_GANGOPS_HEIST_STATUS", -229380)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_MISSION_PROG", 65535)
 	stats.stat_set_int("MPx_GANGOPS_FLOW_NOTIFICATIONS", 1557)
 	menu.restart_facility_board()
 end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
 
-Alice["Alice"]:add_button("困难全福银行 [人均600w]", function()
-	menu.apartment_heist_player_cut(0--[[ 房主[player_0] --]], 2385)
-	menu.apartment_heist_player_cut(1--[[ 队友[player_1] --]], 2385)
-	--menu.apartment_heist_player_cut(2--[[ 队友[player_2] --]], 2385) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
-	--menu.apartment_heist_player_cut(3--[[ 队友[player_3] --]], 2385) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
+Alice["末日豪劫本地分红"] = Alice["Alice"]:add_input_int("c") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("末日豪劫本地分红", function()
+	menu.instant_heist_cut(Alice["末日豪劫本地分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["末日豪劫分红"] = Alice["Alice"]:add_input_int("d") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入末日豪劫分红", function()
+	menu.doomsday_heist_player_cut(0, Alice["末日豪劫分红"]:get_value())
+	menu.doomsday_heist_player_cut(1, Alice["末日豪劫分红"]:get_value())
+	menu.doomsday_heist_player_cut(2, Alice["末日豪劫分红"]:get_value())
+	menu.doomsday_heist_player_cut(3, Alice["末日豪劫分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+------------------------------------------------------------------------------------------------ 名钻赌场豪劫
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<名钻赌场豪劫>")
+
+Alice["Alice"]:add_button("名钻赌场豪劫强制玩家准备", menu.casino_heist_force_player_ready) Alice["Alice"]:add_sameline()
+menu["自动配置名钻赌场豪劫"] = Alice["Alice"]:add_checkbox("自动配置名钻赌场豪劫") Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+Alice["名钻赌场豪劫本地分红"] = Alice["Alice"]:add_input_int("e") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入名钻赌场豪劫分红", function()
+	menu.instant_heist_cut(Alice["名钻赌场豪劫本地分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["名钻赌场豪劫分红]"] = Alice["Alice"]:add_input_int("f") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入名钻赌场豪劫分红", function()
+	menu.casino_heist_player_cut(0, Alice["名钻赌场豪劫分红"]:get_value())
+	menu.casino_heist_player_cut(1, Alice["名钻赌场豪劫分红"]:get_value())
+	menu.casino_heist_player_cut(2, Alice["名钻赌场豪劫分红"]:get_value())
+	menu.casino_heist_player_cut(3, Alice["名钻赌场豪劫分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["右下角总收入[名钻赌场豪劫]"] = Alice["Alice"]:add_input_int("g") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入名钻赌场豪劫总收入", function()
+	menu.instant_mission_take("fm_mission_controller", Alice["右下角总收入[名钻赌场豪劫]"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+------------------------------------------------------------------------------------------------ 佩里科岛
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<佩里科岛>")
+
+Alice["Alice"]:add_button("佩里科岛强制玩家准备", menu.cayo_heist_force_player_ready) Alice["Alice"]:add_sameline()
+menu["自动配置佩里科岛"] = Alice["Alice"]:add_checkbox("自动配置佩里科岛") Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+Alice["佩里科岛本地分红"] = Alice["Alice"]:add_input_int("h") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入佩里科岛分红", function()
+	menu.instant_heist_cut(Alice["佩里科岛本地分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["佩里科岛分红"] = Alice["Alice"]:add_input_int("i") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入佩里科岛分红", function()
+	menu.cayo_heist_player_cut(0, Alice["佩里科岛分红"]:get_value())
+	menu.cayo_heist_player_cut(1, Alice["佩里科岛分红"]:get_value())
+	menu.cayo_heist_player_cut(2, Alice["佩里科岛分红"]:get_value())
+	menu.cayo_heist_player_cut(3, Alice["佩里科岛分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["右下角总收入[佩里科岛]"] = Alice["Alice"]:add_input_int("j") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入佩里科岛总收入", function()
+	menu.instant_mission_take("fm_mission_controller_2020", Alice["右下角总收入[佩里科岛]"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+------------------------------------------------------------------------------------------------ 改装铺合约
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<改装铺合约>")
+
+Alice["Alice"]:add_button("联合储蓄", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 0)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
 end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("困难全福银行 [人均1500w]", function()
-	menu.apartment_heist_player_cut(0--[[ 房主[player_0] --]], 5962)
-	menu.apartment_heist_player_cut(1--[[ 队友[player_1] --]], 5962)
-	--menu.apartment_heist_player_cut(2--[[ 队友[player_2] --]], 5962) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
-	--menu.apartment_heist_player_cut(3--[[ 队友[player_3] --]], 5962) --[[ 由于全福是2个人, 如需设置例如越狱等4人抢劫请把注释去掉并参考实例 --]]
+Alice["Alice"]:add_button("大钞交易", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 1)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
 end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("解锁选项")
+Alice["Alice"]:add_button("银行合约", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 2)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_button("解锁全部DLC物品", menu.unlock_all_packed_bool) Alice["Alice"]:add_sameline()
+Alice["Alice"]:add_button("电控单元", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 3)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline()
 
+Alice["Alice"]:add_button("监狱合约", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 4)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("IAA合约", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 5)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("失落摩托帮合约", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 6)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("数据合约", function()
+	stats.stat_set_int("MPx_TUNER_CURRENT", 7)
+	stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["改装铺合约分红"] = Alice["Alice"]:add_input_int("k") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入改装铺合约分红", function()
+	menu.lscar_mission_localplayer_pay(Alice["改装铺合约分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+------------------------------------------------------------------------------------------------ 事务所合约
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<事务所合约>")
+
+Alice["Alice"]:add_button("别惹德瑞", function()
+	stats.stat_set_int("MPx_FIXER_GENERAL_BS", -1)
+	stats.stat_set_int("MPx_FIXER_STORY_BS", 4095)
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+Alice["事务所合约分红"] = Alice["Alice"]:add_input_int("l") Alice["Alice"]:add_sameline()
+
+Alice["Alice"]:add_button("写入事务所合约分红", function()
+	menu.dre_mission_localplayer_pay(Alice["事务所合约分红"]:get_value())
+end) Alice["Alice"]:add_sameline() Alice["Alice"]:add_separator()
+
+------------------------------------------------------------------------------------------------ null
+Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<null>")
 VehicleList = {
 	"inductor", 
 	"inductor2", 
@@ -173,9 +295,7 @@ Alice["Alice"]:add_button("打印VehicleMods", function()
 	end
 end) Alice["Alice"]:add_sameline()
 
-Alice["Alice"]:add_separator()
-Alice["Alice"]:add_text("null")
-
+------------------------------------------------------------------------------------------------ 循环线程
 script.register_looped("OnScriptLoaded", function()
 	menu.disable_bounds_death() -- 禁用越界死亡
 	if menu["全部爆炸"]:is_enabled() then
@@ -205,7 +325,7 @@ script.register_looped("OnScriptLoaded", function()
 	if menu["自动破解任务小游戏"]:is_enabled() then
 		menu.instant_mission_minigame_passed()
 	end
-	if menu["开启公寓抢劫 [大结局]"]:is_enabled() then
+	if menu["跳过公寓抢劫"]:is_enabled() then
 		stats.stat_set_int("MPx_HEIST_PLANNING_STAGE", -1)
 	end
 	if menu["自动配置名钻赌场豪劫"]:is_enabled() then
@@ -276,15 +396,5 @@ script.register_looped("OnScriptLoaded", function()
 		for i = 0, 3 do
 			menu.cayo_heist_player_cut(i, 149)
 		end
-	end
-	if menu["自动配置别惹德瑞"]:is_enabled() then
-		stats.stat_set_int("MPx_FIXER_GENERAL_BS", -1)
-		stats.stat_set_int("MPx_FIXER_STORY_BS", 4095)
-		menu.dre_mission_localplayer_pay(2500000)
-	end
-	if menu["自动配置联合储蓄"]:is_enabled() then
-		stats.stat_set_int("MPx_TUNER_CURRENT", 0)
-		stats.stat_set_int("MPx_TUNER_GEN_BS", 65535)
-		menu.lscar_mission_localplayer_pay(2000000)
 	end
 end)
