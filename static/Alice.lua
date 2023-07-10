@@ -1,9 +1,10 @@
+--package.path = os.getenv("UserProfile").."/AppData/Roaming/YimMenu/scripts/?.lua"
 require("Alice-lib/lib")
 Alice = {}
 Alice["Alice"] = gui.get_tab("GUI_TAB_LUA_SCRIPTS")
 
------------------------------------------------------------------------------------------------- 世界选项
-Alice["Alice"]:add_separator() Alice["Alice"]:add_text("<世界选项>")
+Alice["Alice"]:add_separator()
+Alice["Alice"]:add_text("世界选项")
 
 Alice["Alice"]:add_button("离开GTA线上模式", function()
 	menu.change_session(-1)
