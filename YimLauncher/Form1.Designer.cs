@@ -76,6 +76,7 @@
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
+            label22 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -370,6 +371,7 @@
             // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(label22);
             groupBox6.Controls.Add(button11);
             groupBox6.Controls.Add(button10);
             groupBox6.Controls.Add(button9);
@@ -556,6 +558,16 @@
             label15.TabIndex = 0;
             label15.Text = "label15";
             // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.ForeColor = Color.Red;
+            label22.Location = new Point(6, 89);
+            label22.Name = "label22";
+            label22.Size = new Size(315, 40);
+            label22.TabIndex = 3;
+            label22.Text = "请确保您已预先在小助手Discord各Lua的版块\r\n阅读注意事项";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -588,6 +600,7 @@
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             groupBox7.ResumeLayout(false);
             groupBox7.PerformLayout();
             ResumeLayout(false);
@@ -643,5 +656,6 @@
         private Label label19;
         private Label label21;
         private Button button16;
+        private Label label22;
     }
 }
